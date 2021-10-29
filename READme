@@ -1,0 +1,5 @@
+PORT=3001
+MONGO_URL=mongodb+srv://TestUser:Contrasena@cluster0.fzgzh.mongodb.net/TequilaChat?retryWrites=true&w=majority
+
+JWTSECRET=CRPspdfkpsdkvnscv@%#scdjnolsjnclkndSOANn
+          
