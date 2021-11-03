@@ -57,7 +57,7 @@ class RoomController {
     static createLink(req, res) {
         const database = new Database('rooms');
         let token = req.headers["x-auth"];
-        let userPer = SalaController.authPer(token);
+        let userPer = RoomController.authPer(token);
         if (!userPer) {
             return res.status(401).end()
         }
@@ -78,12 +78,12 @@ class RoomController {
             })
     }
 
-    static signSalaLink(req, res) {
+    static signRoomLink(req, res) {
         const database = new Database('rooms')
         const datarela = new Database('roomUser')
         console.log(req.params.id)
         let token = req.headers["x-auth"];
-        let userPer = SalaController.authPer(token);
+        let userPer = RoomController.authPer(token);
         if (!userPer) {
             return res.status(401).end()
         }
