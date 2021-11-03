@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 let secret = process.env.JWTSECRET;
 
-class MessengeController{
+class MessageController{
     static authPer(token) {
         let decoded;
         try {
@@ -20,21 +20,21 @@ class MessengeController{
         return reg;
     }
 
-    static newMessenge(req,res){
+    static newMessage(req,res){
         let token= req.headers["x-auth"];
         if(!token){
             return res.status(401).end();
         }
-        let userPer = MessengeController.authPer(token);
-        let sala= req.body.sala;
+        let userPer = MessageController.authPer(token);
+        let room= req.body.room;
         const database= new Database("messages");
-        const datarela= new Database("userSala");
+        const datarela= new Database("roomUser");
         datarela.findOne({user: userPer[1], sala: sala})
         .then(results =>{
             if(results){
                 database.insertOne({
                     author: userPer[1],
-                    sala: sala,
+                    room: room,
                     message: req.body.message,
                     date: new Date()
                 }).then(response => {
@@ -49,4 +49,4 @@ class MessengeController{
         })
     }
 }
- module.exports= MessengeController;
+ module.exports= MessageController;
